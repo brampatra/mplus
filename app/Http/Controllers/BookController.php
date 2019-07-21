@@ -26,7 +26,8 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        $book = new Book();
+        return view('book.create', compact('book'));
     }
 
     /**
@@ -37,7 +38,8 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Book::create($request->all());
+        return redirect('/books')->with('success', 'Book has been added');
     }
 
     /**
@@ -59,7 +61,8 @@ class BookController extends Controller
      */
     public function edit($id)
     {
-        //
+        $book = Book::find($id);
+        return view('book.edit', compact('book'));
     }
 
     /**
@@ -71,7 +74,8 @@ class BookController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Book::find($id)->update($request->all());
+        return redirect('/books')->with('success', 'Book has been updated');
     }
 
     /**
@@ -82,6 +86,7 @@ class BookController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Book::find($id)->delete();
+        return redirect('/books')->with('success', 'Book has been deleted');
     }
 }

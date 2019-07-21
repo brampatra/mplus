@@ -12,6 +12,7 @@
                 {{ session()->get('success') }}
             </div><br />
         @endif
+        <a class="btn btn-success" href="/books/create">Create</a>
         <table class="table table-striped">
             <thead>
             <tr>
@@ -33,13 +34,9 @@
                     <td>{{$share->date_published}}</td>
                     <td>{{$share->number_of_pages}}</td>
                     <td>{{$share->type}}</td>
-                    <td><a href="{{ route('shares.edit',$share->id)}}" class="btn btn-primary">Edit</a></td>
+                    <td><a href="{{ route('books.edit',$share->id)}}" class="btn btn-primary">Edit</a></td>
                     <td>
-                        <form action="{{ route('shares.destroy', $share->id)}}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-danger" type="submit">Delete</button>
-                        </form>
+                        <a href="{{ url('books/delete',$share->id)}}"><button  class="btn btn-danger" >Delete</button></a>
                     </td>
                 </tr>
             @endforeach
